@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SEP Litigation Trends: What the Data Tells Us About 2024–2025 — Clairven Technical Insights">
+<title>SEP Litigation Trends 2024–2025 — Clairven</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #b8c9b0; --sage-light: #dce8d8; --sage-deep: #8aab80;
+    --lavender: #c4b8d4; --lavender-light: #e8e0f0; --lavender-muted: #a99bbf;
+    --beige: #f0ebe0; --beige-warm: #e8dfd0; --powder: #b8cfe0; --powder-light: #dceaf5;
+    --ink: #2a2a32; --ink-soft: #4a4a58; --ink-muted: #7a7a8a; --white: #faf9f7;
+    --radius: 16px; --shadow: 0 4px 32px rgba(42,42,50,0.08); --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; border: none; transition: all var(--transition); text-decoration: none; }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover { background: var(--ink-soft); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,42,50,0.2); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; background: rgba(250,249,247,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(42,42,50,0.06); box-shadow: 0 2px 20px rgba(42,42,50,0.06); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; text-decoration: none; }
+  .logo span { color: var(--sage-deep); }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color var(--transition); letter-spacing: 0.01em; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { padding: 10px 24px; font-size: 0.8rem; }
+  footer { border-top: 1px solid rgba(42,42,50,0.07); padding: 48px 0; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; transition: color var(--transition); }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-copy { font-size: 0.8rem; color: var(--ink-muted); font-family: 'DM Mono', monospace; }
+  .article-wrap { max-width: 760px; margin: 0 auto; padding: 140px 32px 100px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; color: var(--ink-muted); text-decoration: none; margin-bottom: 48px; transition: color var(--transition); }
+  .back-link:hover { color: var(--sage-deep); }
+  .article-category { display: inline-block; background: var(--powder-light); color: var(--ink-soft); padding: 5px 16px; border-radius: 100px; font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; margin-bottom: 24px; }
+  .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 20px; }
+  .article-meta { display: flex; align-items: center; gap: 12px; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--ink-muted); margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(42,42,50,0.08); }
+  .article-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-muted); }
+  .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 500; margin: 48px 0 16px; }
+  .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; margin: 36px 0 12px; }
+  .article-body p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 20px; }
+  .article-body ul { padding-left: 24px; margin-bottom: 20px; }
+  .article-body ul li { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 8px; }
+  .article-body strong { color: var(--ink); font-weight: 500; }
+  .article-callout { background: var(--powder-light); border-left: 3px solid var(--powder); border-radius: 0 var(--radius) var(--radius) 0; padding: 24px 28px; margin: 36px 0; }
+  .article-callout p { margin: 0; font-style: italic; color: var(--ink-soft); }
+  .article-footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(42,42,50,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 768px) { .nav-links { display: none; } .article-wrap { padding: 120px 20px 80px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Clair<span>ven</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html">Services</a></li>
+      <li><a href="index.html" style="color:var(--ink)">Technical Insights</a></li>
+      <li><a href="index.html">About</a></li>
+      <li><a href="index.html" class="btn btn-primary nav-cta" style="color:#faf9f7;">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="article-wrap">
+    <a href="index.html" class="back-link">← Back to Insights</a>
+    <span class="article-category">SEP &amp; Litigation</span>
+    <h1 class="article-title">SEP Litigation Trends: What the Data Tells Us About 2024–2025</h1>
+    <div class="article-meta">
+      <span>Clairven Editorial Team</span>
+      <span class="article-meta-dot"></span>
+      <span>October 2024</span>
+      <span class="article-meta-dot"></span>
+      <span>14 min read</span>
+    </div>
+
+    <div class="article-body">
+      <p>Standard essential patent litigation has entered a new phase of complexity. Assertion volumes are rising, forum strategies are evolving, and the commercial stakes of FRAND disputes have expanded well beyond the telecommunications sector into automotive, IoT, and consumer electronics markets.</p>
+
+      <p>This article draws on publicly available litigation data, regulatory developments, and observed trends in SEP licensing practice to provide a current picture of the SEP landscape and what it means for technology implementers and patent holders alike.</p>
+
+      <h2>The Assertion Landscape in 2024</h2>
+
+      <p>SEP assertion activity has continued to grow across major jurisdictions. Several structural factors are driving this expansion:</p>
+
+      <ul>
+        <li><strong>5G deployment at scale:</strong> As 5G handset and infrastructure deployments have accelerated, the universe of implementers subject to 5G SEP licensing demands has grown substantially. Holders of declared 5G SEPs — both operating companies and dedicated licensing entities — have increased assertion activity accordingly.</li>
+        <li><strong>Automotive and IoT penetration:</strong> Connected vehicles and industrial IoT devices are now routinely the subject of 4G/5G SEP licensing campaigns. Automotive OEMs and Tier 1 suppliers, many of whom lacked sophisticated patent licensing infrastructure, are navigating demands that their counterparts in the handset industry have managed for decades.</li>
+        <li><strong>Portfolio consolidation:</strong> Continued acquisition activity by patent assertion entities has concentrated significant declared SEP portfolios, enabling more coordinated and well-resourced assertion strategies.</li>
+      </ul>
+
+      <div class="article-callout">
+        <p>"The FRAND commitment does not eliminate licensing disputes — it shapes them. The contested terrain has shifted from whether a license is required to what a FRAND rate looks like."</p>
+      </div>
+
+      <h2>Forum Dynamics: Where Cases Are Being Filed</h2>
+
+      <p>The strategic use of multiple jurisdictions simultaneously continues to define advanced SEP litigation. The competitive dynamics among major forums have shifted in notable ways:</p>
+
+      <h3>Germany</h3>
+      <p>German courts remain a favored forum for SEP holders. The availability of injunctive relief, combined with relatively predictable timelines, makes Germany attractive for asserting leverage in licensing negotiations. The German Federal Court of Justice's Sisvel v. Haier decisions established a clearer FRAND framework, but implementers still bear significant procedural burdens in demonstrating a "willing licensee" defense.</p>
+
+      <h3>United Kingdom</h3>
+      <p>The UK Supreme Court's Unwired Planet decision established the English courts' jurisdiction to set global FRAND rates — a significant development that has made London a prominent venue for implementers seeking binding rate determinations. The UK's willingness to set worldwide rates has created a competing forum dynamic with Germany and the US.</p>
+
+      <h3>United States</h3>
+      <p>US SEP litigation has been complicated by ongoing uncertainty around the standard for FRAND rate-setting following conflicting district court decisions. ITC proceedings remain available but are less commonly pursued in pure SEP contexts due to the public interest exception for standards-essential technology. US litigation tends to serve as a parallel pressure tool alongside European proceedings rather than a primary venue for rate-setting.</p>
+
+      <h3>China</h3>
+      <p>Chinese courts have become increasingly active in SEP matters, with domestic courts issuing anti-suit injunctions that have created significant procedural conflict with European and US proceedings. For patent holders with substantial China revenue exposure, the threat of Chinese injunctions has introduced new complexity into global licensing negotiations.</p>
+
+      <h2>The FRAND Rate Debate: Where Things Stand</h2>
+
+      <p>The substantive question of what constitutes a FRAND royalty rate remains genuinely contested. Several methodological debates recur across jurisdictions:</p>
+
+      <ul>
+        <li><strong>Royalty base:</strong> Whether FRAND rates should be applied to the smallest saleable patent-practicing unit (SSPPU) or to a broader base — such as the end product value — remains disputed, with different courts reaching different conclusions.</li>
+        <li><strong>Portfolio vs. patent-by-patent licensing:</strong> SEP holders generally prefer portfolio licensing, which limits the implementer's ability to challenge individual patent validity. Implementers increasingly push for patent-specific analysis as a precondition to licensing, creating procedural friction.</li>
+        <li><strong>Essentiality rates:</strong> The actual percentage of declared SEPs that are technically essential to a given standard is consistently lower than declared numbers suggest, often significantly so. Courts have begun to grapple with how essentiality rates affect the calculation of proportionate royalty stacks.</li>
+      </ul>
+
+      <h2>Implications for Implementers</h2>
+
+      <p>For technology companies facing SEP licensing demands, several strategic principles emerge from the current landscape:</p>
+
+      <ul>
+        <li>Early technical assessment of declared SEPs against the relevant standard specification is essential before entering licensing negotiations — the essentiality of declared patents varies widely and affects negotiating position.</li>
+        <li>Claim chart analysis performed before negotiations begin allows implementers to enter discussions with a fact-based view of which patents require licensing and which do not.</li>
+        <li>Understanding the forum preferences and litigation history of the asserting party allows implementers to anticipate negotiating tactics and prepare appropriate responses.</li>
+        <li>Global licensing negotiations increasingly require coordination of legal strategy across multiple jurisdictions simultaneously — a capability that requires experienced cross-border patent counsel.</li>
+      </ul>
+
+      <h2>What to Watch in 2025</h2>
+
+      <p>Several developments warrant close attention in the coming year. Regulatory activity in the European Union around SEP licensing transparency continues, with proposals that could affect disclosure obligations for SEP holders. Litigation in the automotive sector is likely to intensify as 5G connectivity becomes standard in new vehicles. And the continued consolidation of SEP portfolios in dedicated licensing vehicles will maintain upward pressure on assertion volume across all implementer sectors.</p>
+
+      <p>Clairven continues to monitor SEP litigation developments and provide essentiality analysis and claim chart support to clients navigating licensing negotiations and disputes.</p>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link" style="margin-bottom:0">← Back to Insights</a>
+      <a href="index.html" class="btn btn-primary">Discuss a Project</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a class="logo" href="index.html">Clair<span>ven</span></a>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="index.html">Insights</a></li>
+        <li><a href="index.html">Contact</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Clairven. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

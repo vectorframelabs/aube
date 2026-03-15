@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Role of AI in Modern Patent Search: Opportunities and Limits — Aube Research Technical Insights">
+<title>The Role of AI in Modern Patent Search — Aube Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #b8c9b0; --sage-light: #dce8d8; --sage-deep: #8aab80;
+    --lavender: #c4b8d4; --lavender-light: #e8e0f0; --lavender-muted: #a99bbf;
+    --beige: #f0ebe0; --beige-warm: #e8dfd0; --powder: #b8cfe0; --powder-light: #dceaf5;
+    --ink: #2a2a32; --ink-soft: #4a4a58; --ink-muted: #7a7a8a; --white: #faf9f7;
+    --radius: 16px; --shadow: 0 4px 32px rgba(42,42,50,0.08); --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; border: none; transition: all var(--transition); text-decoration: none; }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover { background: var(--ink-soft); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,42,50,0.2); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-secondary:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; background: rgba(250,249,247,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(42,42,50,0.06); box-shadow: 0 2px 20px rgba(42,42,50,0.06); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; text-decoration: none; }
+  .logo span { color: var(--sage-deep); }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color var(--transition); letter-spacing: 0.01em; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { padding: 10px 24px; font-size: 0.8rem; }
+  footer { border-top: 1px solid rgba(42,42,50,0.07); padding: 48px 0; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; transition: color var(--transition); }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-copy { font-size: 0.8rem; color: var(--ink-muted); font-family: 'DM Mono', monospace; }
+  /* Article layout */
+  .article-wrap { max-width: 760px; margin: 0 auto; padding: 140px 32px 100px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; color: var(--ink-muted); text-decoration: none; margin-bottom: 48px; transition: color var(--transition); }
+  .back-link:hover { color: var(--sage-deep); }
+  .article-category { display: inline-block; background: var(--sage-light); color: var(--ink-soft); padding: 5px 16px; border-radius: 100px; font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; margin-bottom: 24px; }
+  .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 20px; }
+  .article-meta { display: flex; align-items: center; gap: 12px; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--ink-muted); margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(42,42,50,0.08); }
+  .article-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-muted); }
+  .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 500; margin: 48px 0 16px; }
+  .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; margin: 36px 0 12px; }
+  .article-body p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 20px; }
+  .article-body ul { padding-left: 24px; margin-bottom: 20px; }
+  .article-body ul li { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 8px; }
+  .article-body strong { color: var(--ink); font-weight: 500; }
+  .article-callout { background: var(--sage-light); border-left: 3px solid var(--sage-deep); border-radius: 0 var(--radius) var(--radius) 0; padding: 24px 28px; margin: 36px 0; }
+  .article-callout p { margin: 0; font-style: italic; color: var(--ink-soft); }
+  .article-footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(42,42,50,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 768px) { .nav-links { display: none; } .article-wrap { padding: 120px 20px 80px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Aube<span>Aube</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#insights" style="color:var(--ink)">Technical Insights</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact" class="btn btn-primary nav-cta" style="color:#faf9f7;">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="article-wrap">
+    <a href="index.html" class="back-link">← Back to Insights</a>
+    <span class="article-category">AI &amp; Analytics</span>
+    <h1 class="article-title">The Role of AI in Modern Patent Search: Opportunities and Limits</h1>
+    <div class="article-meta">
+      <span>Aube Research Editorial Team</span>
+      <span class="article-meta-dot"></span>
+      <span>December 2024</span>
+      <span class="article-meta-dot"></span>
+      <span>8 min read</span>
+    </div>
+
+    <div class="article-body">
+      <p>Machine learning has fundamentally changed the speed and scale of prior art retrieval. But the boundaries of what AI can reliably do — and where analyst judgment remains non-negotiable — are widely misunderstood, often by the teams deploying these tools themselves.</p>
+
+      <p>This article offers a clear-eyed assessment of where AI genuinely adds value in patent search workflows, and where over-reliance on automated systems creates dangerous blind spots.</p>
+
+      <h2>What AI Does Well in Patent Search</h2>
+
+      <p>Modern large language models and semantic search engines have made meaningful progress in several narrow but important tasks within prior art search:</p>
+
+      <ul>
+        <li><strong>Semantic expansion of search queries:</strong> Traditional keyword search misses prior art described with different terminology. AI-powered semantic similarity models surface conceptually related documents even when the vocabulary diverges — a significant improvement over Boolean queries alone.</li>
+        <li><strong>Classification and clustering at scale:</strong> AI can triage tens of thousands of patent documents in hours, grouping them by technical concept and filtering obvious non-relevant results before a human analyst ever touches them.</li>
+        <li><strong>Cross-lingual retrieval:</strong> Multilingual embedding models now enable meaningful prior art searches across Japanese, Korean, German, and Chinese patent corpora without requiring full translation — a capability that was prohibitively expensive to execute manually at scale.</li>
+        <li><strong>Citation network analysis:</strong> Graph-based AI tools can rapidly map forward and backward citation chains to surface seminal documents and identify clusters of related inventive activity.</li>
+      </ul>
+
+      <div class="article-callout">
+        <p>"AI in patent search is most valuable when it expands the surface area of what a human analyst can examine — not when it replaces the examination itself."</p>
+      </div>
+
+      <h2>Where AI Falls Short</h2>
+
+      <p>The appeal of fully automated prior art search is understandable. Faster, cheaper, scalable — these are compelling attributes. But the practical limitations of current AI systems create real risks in high-stakes contexts:</p>
+
+      <h3>Claim construction requires legal reasoning</h3>
+      <p>Prior art relevance is not a semantic similarity problem — it is a legal question. Whether a prior art reference anticipates or renders obvious a patent claim depends on how the claims are construed, which requires understanding prosecution history, claim differentiation doctrine, and jurisdiction-specific interpretive rules. Current AI systems do not reliably perform this reasoning.</p>
+
+      <h3>Non-patent literature remains undertreated</h3>
+      <p>Academic papers, conference proceedings, technical standards documents, product manuals, and open-source code can all qualify as prior art. AI retrieval systems trained primarily on patent corpora frequently underperform on NPL search — and the gaps matter in IPR proceedings and invalidity challenges where NPL is often dispositive.</p>
+
+      <h3>Hallucination and false positives</h3>
+      <p>Generative AI systems can produce plausible-sounding but fabricated references, incorrect publication dates, or mischaracterized claim content. In a prior art search context, a fabricated reference is not merely unhelpful — it is actively harmful if relied upon in litigation or prosecution strategy.</p>
+
+      <h3>Context and commercial relevance</h3>
+      <p>A technically precise prior art search is only as useful as its strategic framing. Identifying which references are most likely to survive a validity challenge, which combination of references best supports a claim of obviousness, and how to sequence and present findings for maximum impact requires experience that AI systems do not possess.</p>
+
+      <h2>The Aube Research Approach</h2>
+
+      <p>At Aube Research, we use proprietary AI tooling to do what AI does best: rapid retrieval, semantic expansion, cross-lingual search, and structured triage. This dramatically increases the coverage and speed of the initial search phase.</p>
+
+      <p>But every result is then reviewed by experienced patent analysts who apply claim construction reasoning, assess legal relevance, evaluate NPL completeness, and structure findings for the specific strategic context. The AI accelerates the analyst — it does not replace the analysis.</p>
+
+      <p>This distinction is not cosmetic. It is the difference between a search report you can defend in an IPR proceeding and one that creates more risk than it resolves.</p>
+
+      <h2>Conclusion</h2>
+
+      <p>AI has meaningfully improved the efficiency and breadth of patent search. Teams that ignore these tools are leaving speed and coverage on the table. But teams that treat AI outputs as final deliverables are accepting analytical risk they may not fully understand.</p>
+
+      <p>The right model is integration: AI-powered retrieval at scale, analyst-validated output in every report. That is the standard Aube Research holds itself to, and it is the standard we believe the field requires.</p>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link" style="margin-bottom:0">← Back to Insights</a>
+      <a href="index.html#contact" class="btn btn-primary">Discuss a Project</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a class="logo" href="index.html">Aube<span>Aube</span></a>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="index.html">Insights</a></li>
+        <li><a href="index.html">Contact</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Aube Research. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

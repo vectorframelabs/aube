@@ -81,7 +81,7 @@
     background: var(--gold);
     color: var(--navy);
     padding: 0.45rem 1.1rem;
-    border-radius: 2px;
+    border-radius: 6px;
     font-weight: 500;
     font-size: 0.8rem;
     letter-spacing: 0.05em;
@@ -100,11 +100,29 @@
   /* ─── HERO ─── */
   #hero {
     background: var(--navy);
-    padding: 130px 6% 90px;
-    min-height: 88vh;
+    padding: 110px 6% 70px;
+    min-height: 82vh;
     display: flex; align-items: center;
   }
-  .hero-inner { max-width: 780px; }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+  .hero-inner { max-width: 680px; }
+  .hero-art {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 0.92;
+  }
+  @media (max-width: 900px) {
+    .hero-layout { grid-template-columns: 1fr; }
+    .hero-art { display: none; }
+  }
 
   .hero-eyebrow {
     display: inline-block;
@@ -147,6 +165,7 @@
     border-left: 2px solid rgba(201,168,76,0.4);
     background: rgba(201,168,76,0.06);
     max-width: 540px;
+    border-radius: 0 8px 8px 0;
   }
 
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -161,7 +180,7 @@
     letter-spacing: 0.07em;
     text-transform: uppercase;
     border: none;
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s, transform 0.15s;
@@ -179,7 +198,7 @@
     letter-spacing: 0.07em;
     text-transform: uppercase;
     border: 1px solid rgba(250,250,248,0.35);
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     transition: border-color 0.2s, color 0.2s;
@@ -188,15 +207,14 @@
   .btn-outline:hover { border-color: rgba(250,250,248,0.7); }
 
   .hero-stats {
-    display: flex; gap: 3rem; margin-top: 3.5rem;
-    padding-top: 2.5rem;
+    display: flex; gap: 2rem; margin-top: 3rem;
+    padding-top: 2rem;
     border-top: 1px solid rgba(250,250,248,0.1);
     flex-wrap: wrap;
   }
-  .stat-item { }
   .stat-num {
     font-family: var(--font-serif);
-    font-size: 1.9rem;
+    font-size: 1.6rem;
     color: var(--white);
     font-weight: 700;
     display: block;
@@ -204,14 +222,14 @@
     margin-bottom: 0.3rem;
   }
   .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: rgba(250,250,248,0.5);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
   /* ─── SECTIONS ─── */
-  section { padding: 80px 6%; }
+  section { padding: 60px 6%; }
 
   .section-label {
     font-size: 0.7rem;
@@ -273,19 +291,21 @@
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-    border: 1.5px solid var(--border);
+    gap: 1rem;
+    background: transparent;
+    border: none;
   }
 
   .service-card {
     background: var(--white);
     padding: 2.2rem 2rem;
-    transition: background 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
     position: relative;
     cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid var(--border);
   }
-  .service-card:hover { background: #FFFDF9; }
+  .service-card:hover { background: #FFFDF9; box-shadow: 0 4px 20px rgba(13,31,60,0.08); }
   .service-card::before {
     content: '';
     position: absolute;
@@ -347,7 +367,7 @@
   .why-card {
     padding: 1.8rem;
     border: 1px solid rgba(250,250,248,0.1);
-    border-radius: 1px;
+    border-radius: 8px;
     background: rgba(250,250,248,0.04);
   }
 
@@ -356,7 +376,7 @@
     margin-bottom: 1.1rem;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 2px;
+    border-radius: 8px;
   }
   .why-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
 
@@ -458,7 +478,7 @@
 
   .process-figure {
     background: var(--navy);
-    border-radius: 3px;
+    border-radius: 12px;
     padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
@@ -500,6 +520,7 @@
     background: var(--white);
     border: 1px solid var(--border);
     overflow: hidden;
+    border-radius: 10px;
     transition: box-shadow 0.25s, transform 0.2s;
     cursor: pointer;
   }
@@ -583,6 +604,7 @@
   .about-credentials {
     background: var(--off-white);
     border: 1px solid var(--border);
+    border-radius: 10px;
     padding: 2rem;
   }
 
@@ -626,8 +648,6 @@
     align-items: start;
   }
 
-  .contact-info-block { }
-
   .contact-detail {
     margin-bottom: 1.6rem;
     padding-bottom: 1.6rem;
@@ -659,7 +679,6 @@
   }
 
   /* Form */
-  .contact-form { }
 
   .form-row {
     display: grid;
@@ -690,7 +709,7 @@
     padding: 0.7rem 0.9rem;
     font-family: var(--font-sans);
     font-size: 0.9rem;
-    border-radius: 1px;
+    border-radius: 6px;
     outline: none;
     transition: border-color 0.2s;
     -webkit-appearance: none;
@@ -717,12 +736,128 @@
     display: none;
     background: rgba(201,168,76,0.1);
     border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
     padding: 1rem 1.2rem;
     margin-top: 1rem;
     font-size: 0.88rem;
     color: var(--gold-light);
     font-family: var(--font-serif);
     font-style: italic;
+  }
+
+  /* ─── SOCIAL LINKS ─── */
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(250,250,248,0.6);
+    text-decoration: none;
+    border: 1px solid rgba(250,250,248,0.15);
+    border-radius: 20px;
+    padding: 0.4rem 0.85rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .social-link:hover {
+    border-color: rgba(201,168,76,0.5);
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.06);
+  }
+  .social-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+  /* ─── FAQ SECTION ─── */
+  #faq { background: var(--white); }
+
+  .faq-grid {
+    display: flex;
+    flex-direction: column;
+    max-width: 860px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: var(--off-white);
+    border: none;
+    padding: 1.15rem 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    line-height: 1.45;
+    transition: background 0.2s;
+  }
+  .faq-question:hover { background: #EDE9E1; }
+  .faq-item.open .faq-question { background: #fff; border-bottom: 1px solid var(--border); }
+  .faq-question .faq-chevron {
+    width: 18px; height: 18px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+  .faq-answer {
+    display: none;
+    padding: 1rem 1.5rem 1.25rem;
+    font-size: 0.885rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    background: #fff;
+  }
+  .faq-item.open .faq-answer { display: block; }
+
+  /* ─── FREE CONSULTATION BANNER ─── */
+  .consultation-banner {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 4px solid var(--gold);
+    padding: 2rem 2.2rem;
+    margin-top: 4.0rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .consultation-banner-text strong {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--white);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .consultation-banner-text p {
+    font-size: 0.875rem;
+    color: rgba(250,250,248,0.65);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* ─── FOOTER ─── */
@@ -953,6 +1088,7 @@
     <li><a onclick="showPage('home'); closeNav()">Home</a></li>
     <li><a onclick="scrollToSection('services'); closeNav()">Services</a></li>
     <li><a onclick="showPage('insights-page'); closeNav()">Insights</a></li>
+    <li><a onclick="scrollToSection('faq'); closeNav()">FAQ</a></li>
     <li><a onclick="scrollToSection('about'); closeNav()">About</a></li>
     <li><a onclick="scrollToSection('contact'); closeNav()" class="cta-link">Get in Touch</a></li>
   </ul>
@@ -966,38 +1102,161 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-inner">
-      <span class="hero-eyebrow">Patent Analytics &amp; IP Intelligence</span>
-      <h1 class="hero-h1">
-        Precision research for<br><em>decisions that hold up</em><br>in court, in filings, in deals.
-      </h1>
-      <p class="hero-lead">
-        Aube Research delivers rigorous patent analytics — prior art, infringement analysis, FTO, claim charting, landscape studies, and portfolio evaluation — for law firms, corporations, and inventors who cannot afford to be wrong.
-      </p>
-      <div class="hero-tagline">
-        Search could be automated — judgment isn't.
+    <div class="hero-layout">
+      <div class="hero-inner">
+        <span class="hero-eyebrow">Patent Analytics &amp; IP Intelligence</span>
+        <h1 class="hero-h1">
+          Precision research for<br><em>decisions that hold up</em><br>in court, in filings, in deals.
+        </h1>
+        <p class="hero-lead">
+          Aube Research delivers rigorous patent analytics — prior art, infringement analysis, FTO, claim charting, landscape studies, and portfolio evaluation — for law firms, corporations, and inventors who cannot afford to be wrong.
+        </p>
+        <div class="hero-tagline">
+          Search could be automated — judgment isn't.
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" onclick="scrollToSection('services')">View Services</a>
+          <a class="btn-outline" onclick="scrollToSection('contact')">Request a Quote</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Core Service Areas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">USPTO</span>
+            <span class="stat-label">EPO · WIPO · JPO</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">Global</span>
+            <span class="stat-label">Jurisdiction Coverage</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">Custom</span>
+            <span class="stat-label">Pricing per Engagement</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-actions">
-        <a class="btn-primary" onclick="scrollToSection('services')">View Services</a>
-        <a class="btn-outline" onclick="scrollToSection('contact')">Request a Quote</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num">6</span>
-          <span class="stat-label">Core Service Areas</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">USPTO</span>
-          <span class="stat-label">EPO · WIPO · JPO</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">Global</span>
-          <span class="stat-label">Jurisdiction Coverage</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">Custom</span>
-          <span class="stat-label">Pricing per Engagement</span>
-        </div>
+
+      <!-- HERO SVG ART -->
+      <div class="hero-art">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" width="400" height="500">
+          <defs>
+            <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4A6FA5" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#4A6FA5" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="blur1">
+              <feGaussianBlur stdDeviation="18"/>
+            </filter>
+          </defs>
+
+          <!-- Ambient glow blobs -->
+          <ellipse cx="280" cy="160" rx="140" ry="130" fill="url(#glow1)" filter="url(#blur1)"/>
+          <ellipse cx="130" cy="340" rx="110" ry="100" fill="url(#glow2)" filter="url(#blur1)"/>
+
+          <!-- Background subtle grid -->
+          <g stroke="rgba(201,168,76,0.07)" stroke-width="1">
+            <line x1="0" y1="80" x2="400" y2="80"/>
+            <line x1="0" y1="160" x2="400" y2="160"/>
+            <line x1="0" y1="240" x2="400" y2="240"/>
+            <line x1="0" y1="320" x2="400" y2="320"/>
+            <line x1="0" y1="400" x2="400" y2="400"/>
+            <line x1="80" y1="0" x2="80" y2="500"/>
+            <line x1="160" y1="0" x2="160" y2="500"/>
+            <line x1="240" y1="0" x2="240" y2="500"/>
+            <line x1="320" y1="0" x2="320" y2="500"/>
+          </g>
+
+          <!-- Large central document outline -->
+          <rect x="110" y="70" width="200" height="260" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(201,168,76,0.3)" stroke-width="1.5"/>
+          <!-- document top accent bar -->
+          <rect x="110" y="70" width="200" height="5" rx="2" fill="rgba(201,168,76,0.5)"/>
+          <!-- doc lines -->
+          <line x1="135" y1="105" x2="285" y2="105" stroke="rgba(250,250,248,0.12)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="135" y1="120" x2="265" y2="120" stroke="rgba(250,250,248,0.09)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="135" y1="135" x2="275" y2="135" stroke="rgba(250,250,248,0.09)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="135" y1="150" x2="255" y2="150" stroke="rgba(250,250,248,0.09)" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Divider -->
+          <line x1="135" y1="165" x2="285" y2="165" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+
+          <!-- Claim chart rows -->
+          <rect x="135" y="178" width="50" height="10" rx="2" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+          <rect x="193" y="178" width="80" height="10" rx="2" fill="rgba(250,250,248,0.06)" stroke="rgba(250,250,248,0.12)" stroke-width="0.8"/>
+          <text x="138" y="187" font-family="monospace" font-size="7" fill="rgba(201,168,76,0.8)">Claim 1(a)</text>
+
+          <rect x="135" y="196" width="50" height="10" rx="2" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+          <rect x="193" y="196" width="65" height="10" rx="2" fill="rgba(250,250,248,0.06)" stroke="rgba(250,250,248,0.12)" stroke-width="0.8"/>
+          <text x="138" y="205" font-family="monospace" font-size="7" fill="rgba(201,168,76,0.8)">Claim 1(b)</text>
+
+          <rect x="135" y="214" width="50" height="10" rx="2" fill="rgba(74,111,165,0.3)" stroke="rgba(74,111,165,0.5)" stroke-width="0.8"/>
+          <rect x="193" y="214" width="90" height="10" rx="2" fill="rgba(250,250,248,0.06)" stroke="rgba(250,250,248,0.12)" stroke-width="0.8"/>
+          <text x="138" y="223" font-family="monospace" font-size="7" fill="rgba(107,143,196,0.9)">Claim 2(a)</text>
+
+          <rect x="135" y="232" width="50" height="10" rx="2" fill="rgba(74,111,165,0.3)" stroke="rgba(74,111,165,0.5)" stroke-width="0.8"/>
+          <rect x="193" y="232" width="72" height="10" rx="2" fill="rgba(250,250,248,0.06)" stroke="rgba(250,250,248,0.12)" stroke-width="0.8"/>
+          <text x="138" y="241" font-family="monospace" font-size="7" fill="rgba(107,143,196,0.9)">Claim 2(b)</text>
+
+          <!-- Checkmarks -->
+          <circle cx="288" cy="183" r="6" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <path d="M285 183 l2 2 l4-4" stroke="#C9A84C" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="288" cy="201" r="6" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <path d="M285 201 l2 2 l4-4" stroke="#C9A84C" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="288" cy="219" r="6" fill="rgba(74,111,165,0.2)" stroke="rgba(74,111,165,0.5)" stroke-width="1"/>
+          <path d="M285 219 l2 2 l4-4" stroke="#6b8fc4" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="288" cy="237" r="6" fill="rgba(74,111,165,0.2)" stroke="rgba(74,111,165,0.5)" stroke-width="1"/>
+          <path d="M285 237 l2 2 l4-4" stroke="#6b8fc4" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Bottom doc lines -->
+          <line x1="135" y1="262" x2="285" y2="262" stroke="rgba(250,250,248,0.07)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="135" y1="276" x2="270" y2="276" stroke="rgba(250,250,248,0.07)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="135" y1="290" x2="278" y2="290" stroke="rgba(250,250,248,0.07)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="135" y1="304" x2="250" y2="304" stroke="rgba(250,250,248,0.07)" stroke-width="1.2" stroke-linecap="round"/>
+
+          <!-- Floating badge top-right: USPTO -->
+          <rect x="278" y="52" width="90" height="34" rx="6" fill="rgba(13,31,60,0.85)" stroke="rgba(201,168,76,0.4)" stroke-width="1.2"/>
+          <text x="323" y="66" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.9)" letter-spacing="1.5">USPTO</text>
+          <text x="323" y="78" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(250,250,248,0.45)">searched</text>
+          <line x1="278" y1="60" x2="310" y2="75" stroke="rgba(201,168,76,0.2)" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+          <!-- Floating badge left: EPO -->
+          <rect x="28" y="130" width="72" height="34" rx="6" fill="rgba(13,31,60,0.85)" stroke="rgba(74,111,165,0.45)" stroke-width="1.2"/>
+          <text x="64" y="144" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="rgba(107,143,196,0.9)" letter-spacing="1.5">EPO</text>
+          <text x="64" y="156" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(250,250,248,0.45)">searched</text>
+          <line x1="100" y1="147" x2="110" y2="147" stroke="rgba(74,111,165,0.35)" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+          <!-- Floating badge bottom-right: WIPO -->
+          <rect x="292" y="340" width="82" height="34" rx="6" fill="rgba(13,31,60,0.85)" stroke="rgba(201,168,76,0.35)" stroke-width="1.2"/>
+          <text x="333" y="354" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.85)" letter-spacing="1.5">WIPO</text>
+          <text x="333" y="366" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(250,250,248,0.45)">searched</text>
+
+          <!-- Connection lines between badges and doc -->
+          <path d="M100 147 Q105 147 110 150" stroke="rgba(74,111,165,0.25)" stroke-width="0.8" fill="none" stroke-dasharray="3 2"/>
+
+          <!-- Magnifying glass icon — bottom left -->
+          <circle cx="68" cy="360" r="28" fill="rgba(255,255,255,0.03)" stroke="rgba(201,168,76,0.2)" stroke-width="1.5"/>
+          <circle cx="68" cy="357" r="13" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1.8"/>
+          <line x1="78" y1="367" x2="88" y2="377" stroke="rgba(201,168,76,0.5)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="62" y1="350" x2="68" y2="352" stroke="rgba(250,250,248,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="60" y1="356" x2="63" y2="356" stroke="rgba(250,250,248,0.15)" stroke-width="1.2" stroke-linecap="round"/>
+
+          <!-- Orbit ring around doc -->
+          <ellipse cx="210" cy="200" rx="165" ry="185" fill="none" stroke="rgba(201,168,76,0.06)" stroke-width="1" stroke-dasharray="4 6"/>
+
+          <!-- Small nodes on orbit -->
+          <circle cx="60" cy="210" r="4" fill="rgba(201,168,76,0.35)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+          <circle cx="358" cy="190" r="4" fill="rgba(74,111,165,0.4)" stroke="rgba(74,111,165,0.6)" stroke-width="1"/>
+          <circle cx="210" cy="30" r="3.5" fill="rgba(201,168,76,0.3)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <circle cx="210" cy="388" r="3.5" fill="rgba(201,168,76,0.3)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+
+          <!-- Small label bottom center -->
+          <text x="210" y="475" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(201,168,76,0.35)" letter-spacing="3">PATENT ANALYTICS</text>
+        </svg>
       </div>
     </div>
   </section>
@@ -1014,7 +1273,7 @@
   <!-- SERVICES -->
   <section id="services">
     <span class="section-label">What we do</span>
-    <h2 class="section-title">Patent Analytics Services</h2>
+    <h2 class="section-title">Six ways we support your case</h2>
     <div class="divider"></div>
     <p class="section-intro">Each engagement is scoped to your specific question. We do not deliver bulk search exports — we deliver answers with documented reasoning.</p>
 
@@ -1271,6 +1530,127 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="divider"></div>
+    <p class="section-intro">Common questions about our process, deliverables, and how we work with clients.</p>
+
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What exactly does Aube Research do?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          We provide specialist patent analytics — prior art searches, infringement analysis, Freedom to Operate (FTO) assessments, claim charts, landscape studies, and portfolio evaluations. We do not provide legal advice or representation; we produce the research and analysis that supports legal and commercial decisions.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you offer a free consultation?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Yes. We offer a complimentary 30-minute scoping call for new enquiries. This is an opportunity to discuss your matter, ask questions about our methodology, and determine whether our services are the right fit — before any quote or commitment. Email us at <a href="mailto:hello@auberesearch.com?subject=Free%2030-min%20Consultation%20Request" style="color:var(--slate);">hello@auberesearch.com</a> to book yours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How is your work different from automated patent search tools?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Automated tools retrieve results. We interpret them. Every result is reviewed for substantive relevance — we assess whether it genuinely bears on the legal or commercial question at hand. Our reports include documented reasoning, not raw lists. The analyst's judgment is the core product.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How is the project priced?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Every engagement is quoted individually based on scope — the technology area, service type, number of patents, jurisdictions, and timeline. We do not use subscriptions or per-seat pricing. You receive a fixed quote before any work begins, so there are no surprises.<br><br>
+          If you prefer <strong>retainer-based pricing</strong> (e.g. ongoing monthly support) or <strong>hourly-rate billing</strong>, we are happy to accommodate — just let us know during your free consultation call or drop us a note at <a href="mailto:hello@auberesearch.com" style="color:var(--slate);">hello@auberesearch.com</a> and we will tailor an arrangement that works for you.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Which patent databases and sources do you search?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          We search USPTO, EPO (esp@cenet), WIPO PatentScope, JPO J-PlatPat, CNIPA, and Google Patents for cross-reference. For non-patent literature, we cover IEEE Xplore, arXiv, ACM Digital Library, PubMed, technical standards, and product documentation relevant to the technology domain.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long does an engagement typically take?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Timelines vary by service type and scope. A focused prior art search often completes within 3–7 business days. A comprehensive patent landscape or portfolio evaluation may take 2–4 weeks. We agree on a delivery timeline during scoping, before any work begins, and flag any changes promptly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is my information kept confidential?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Yes. All enquiries and engagements are treated as confidential as a matter of course. We are happy to sign an NDA before any substantive technical discussion if required. We do not disclose client information or engagement details to third parties.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can you work with our law firm or in-house counsel directly?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Yes. We work regularly alongside IP attorneys and in-house counsel teams, providing the research and analytical foundation that supports their legal work. Deliverables are formatted to integrate into professional and litigation contexts. We can coordinate directly with counsel on scope and format where that is helpful.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What format do deliverables come in?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          Deliverable format is agreed during scoping. Prior art search reports are typically provided as structured PDF or Word documents. Claim charts are available in Excel or PDF format. FTO analyses are provided as draft-ready written opinions. Landscape studies include visual and tabular outputs. We adapt format to what your team needs.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you work with individual inventors, or only firms?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          We work with law firms, corporate IP and R&amp;D teams, and individual inventors alike. The engagement process is the same: we scope the question, agree the deliverable and timeline, and issue a fixed quote. If a matter requires an attorney rather than an analyst, we will say so directly.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="consultation-banner">
+      <div class="consultation-banner-text">
+        <strong>Still have questions? Book a free 30-minute call.</strong>
+        <p>No obligation — we will help you scope the right service before any quote is issued.</p>
+      </div>
+      <a href="mailto:hello@auberesearch.com?subject=Free%2030-min%20Consultation%20Request" class="btn-primary" style="white-space:nowrap; flex-shrink:0;">Book Free Consultation</a>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <span class="section-label">About</span>
@@ -1315,12 +1695,31 @@
         </div>
         <div class="contact-detail">
           <div class="contact-label">Engagement type</div>
-          <div class="contact-value" style="font-size:0.9rem; font-family:var(--font-sans); color:rgba(250,250,248,0.7);">Project-based. Custom quote per scope. NDA available on request before any technical discussion. 30-minute confidential free consultation included</div>
+          <div class="contact-value" style="font-size:0.9rem; font-family:var(--font-sans); color:rgba(250,250,248,0.7);">Project-based. Custom quote per scope. NDA available on request before any technical discussion.</div>
         </div>
         <div class="contact-detail">
           <div class="contact-label">What to include</div>
           <div class="contact-sub" style="font-size:0.83rem; line-height:1.7;">
             A brief description of the technology, the service you need, the jurisdiction(s) relevant, and any deadline. The more specific, the more accurate the quote.
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-label">Free Consultation</div>
+          <div class="contact-value" style="font-size:0.88rem; font-family:var(--font-sans); color:rgba(250,250,248,0.85);">30-minute complimentary call</div>
+          <div class="contact-sub" style="font-size:0.82rem; margin-top:0.35rem; line-height:1.7;">Not sure what you need? Book a free 30-minute scoping call. No obligation — we will help you define the right scope before any quote is issued.</div>
+          <a href="mailto:hello@auberesearch.com?subject=Free%2030-min%20Consultation%20Request" class="btn-primary" style="display:inline-block; margin-top:0.85rem; font-size:0.75rem; padding:0.55rem 1.2rem;">Book Free Call →</a>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-label">Follow Us</div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/auberesearch/" target="_blank" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://medium.com/@auberesearch" target="_blank" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+              Medium
+            </a>
           </div>
         </div>
       </div>
@@ -1656,11 +2055,18 @@
       <ul>
         <li><a onclick="scrollToSection('about')">About</a></li>
         <li><a onclick="showPage('insights-page')">Insights</a></li>
+        <li><a onclick="scrollToSection('faq')">FAQ</a></li>
         <li><a onclick="scrollToSection('contact')">Contact</a></li>
         <li><a href="mailto:hello@auberesearch.com" style="display:inline-flex;align-items:center;gap:0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.7"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>hello@auberesearch.com</a></li>
       </ul>
     </div>
-  </div>
+    <div class="footer-links">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="https://www.linkedin.com/in/auberesearch/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.7"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></li>
+        <li><a href="https://medium.com/@auberesearch" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.7"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>Medium</a></li>
+      </ul>
+    </div>
   <div class="footer-bottom">
     <div class="copyright">
       &copy; <span id="year"></span> Aube Research. All rights reserved.<br>
@@ -2178,6 +2584,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullGrid = document.getElementById('full-insights-grid');
   articles.forEach(a => renderArticleCard(a, fullGrid));
 });
+
+// ─── FAQ TOGGLE ───
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!isOpen) item.classList.add('open');
+}
 
 // ─── NAV TOGGLE ───
 function toggleNav() {

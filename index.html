@@ -3102,7 +3102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Initialize history state for home page
-  history.replaceState({ page: 'home' }, '', '#home');
+  history.replaceState({ page: 'home' }, '', '/');
 
   // Home preview: 3 articles
   const homeGrid = document.getElementById('home-insights-grid');

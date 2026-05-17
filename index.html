@@ -12,19 +12,20 @@
 <link rel="shortcut icon" href="favicon.png">
 <style>
   :root {
-    --navy: #0D1F3C;
-    --navy-mid: #162d54;
-    --navy-light: #1e3a6e;
-    --slate: #4A6FA5;
-    --slate-light: #6b8fc4;
-    --gold: #C9A84C;
-    --gold-light: #dfc07a;
-    --white: #FAFAF8;
-    --off-white: #F4F2EE;
-    --text-body: #2C2C2C;
-    --text-muted: #6B6B6B;
-    --text-light: #9A9A9A;
-    --border: #E2DDD6;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3460;
+    --slate: #5B82B8;
+    --slate-light: #82a8d8;
+    --gold: #D4AA50;
+    --gold-light: #f0cb78;
+    --gold-glow: #f5d98a;
+    --white: #FDFCF8;
+    --off-white: #F5F2EC;
+    --text-body: #1E2535;
+    --text-muted: #5A6070;
+    --text-light: #8A90A0;
+    --border: #DDD8CF;
     --font-serif: 'Libre Baskerville', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, sans-serif;
   }
@@ -47,8 +48,9 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
-    background: var(--navy);
-    border-bottom: 1px solid rgba(201,168,76,0.2);
+    background: rgba(10,22,40,0.97);
+    border-bottom: 1px solid rgba(212,170,80,0.25);
+    backdrop-filter: blur(12px);
     padding: 0 6%;
     display: flex; align-items: center; justify-content: space-between;
     height: 64px;
@@ -99,10 +101,36 @@
 
   /* ─── HERO ─── */
   #hero {
-    background: var(--navy);
+    background: radial-gradient(ellipse 130% 90% at 65% 25%, #1a3460 0%, #0d1e3c 45%, #0A1628 100%);
     padding: 110px 6% 70px;
     min-height: 82vh;
     display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -140px; right: -60px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,170,80,0.14) 0%, transparent 65%);
+    animation: orb-float 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: 3%;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91,130,184,0.11) 0%, transparent 65%);
+    animation: orb-float 18s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+  }
+  @keyframes orb-float {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(28px, 18px) scale(1.07); }
   }
   .hero-layout {
     display: grid;
@@ -128,44 +156,49 @@
     display: inline-block;
     font-size: 0.72rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-glow);
     margin-bottom: 1.4rem;
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid var(--gold-glow);
     padding-left: 0.75rem;
+    text-shadow: 0 0 20px rgba(212,170,80,0.35);
   }
 
   .hero-h1 {
     font-family: var(--font-serif);
-    font-size: clamp(2.1rem, 4.5vw, 3.2rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+    font-weight: 400;
     color: var(--white);
-    line-height: 1.25;
+    line-height: 1.28;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.005em;
   }
-  .hero-h1 em { font-style: italic; color: rgba(250,250,248,0.65); }
+  .hero-h1 strong { font-weight: 700; }
+  .hero-h1 em { font-style: italic; color: rgba(240,203,120,0.75); font-weight: 400; }
 
   .hero-lead {
     font-size: 1.05rem;
-    color: rgba(250,250,248,0.72);
+    color: rgba(250,250,248,0.82);
     max-width: 620px;
-    line-height: 1.8;
+    line-height: 1.85;
     margin-bottom: 0.9rem;
   }
 
   .hero-tagline {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1rem;
-    color: var(--gold-light);
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: rgba(240,203,120,0.82);
     margin-bottom: 2.4rem;
-    padding: 0.9rem 1.2rem;
-    border-left: 2px solid rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.06);
-    max-width: 540px;
+    padding: 0.85rem 1.2rem 0.85rem 1.1rem;
+    border-left: 2px solid rgba(212,170,80,0.45);
+    background: rgba(212,170,80,0.05);
+    max-width: 560px;
     border-radius: 0 8px 8px 0;
+    letter-spacing: 0.015em;
+    line-height: 1.65;
   }
 
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -186,7 +219,7 @@
     transition: background 0.2s, transform 0.15s;
     display: inline-block;
   }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(212,170,80,0.32); }
 
   .btn-outline {
     background: transparent;
@@ -212,14 +245,16 @@
     border-top: 1px solid rgba(250,250,248,0.1);
     flex-wrap: wrap;
   }
+  .stat-item { }
   .stat-num {
     font-family: var(--font-serif);
     font-size: 1.6rem;
-    color: var(--white);
+    color: var(--gold-glow);
     font-weight: 700;
     display: block;
     line-height: 1;
     margin-bottom: 0.3rem;
+    text-shadow: 0 0 24px rgba(212,170,80,0.25);
   }
   .stat-label {
     font-size: 0.7rem;
@@ -245,9 +280,10 @@
     font-family: var(--font-serif);
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 700;
-    color: var(--navy);
+    color: #111A2E;
     line-height: 1.3;
     margin-bottom: 1rem;
+    letter-spacing: -0.01em;
   }
 
   .section-intro {
@@ -260,33 +296,74 @@
 
   .divider {
     width: 40px; height: 2px;
-    background: var(--gold);
+    background: linear-gradient(90deg, var(--gold), var(--gold-glow));
     margin: 1.2rem 0 2rem;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(212,170,80,0.4);
   }
 
-  /* ─── TRUST BAND ─── */
+  /* ─── TRUST BAND / TICKER ─── */
   #trust-band {
-    background: var(--navy-mid);
-    padding: 30px 6%;
-    display: flex; align-items: center; justify-content: center;
-    gap: 3rem; flex-wrap: wrap;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
+    background: linear-gradient(90deg, #0d1c38 0%, #122345 50%, #0d1c38 100%);
+    padding: 0;
+    border-top: 1px solid rgba(212,170,80,0.22);
+    border-bottom: 1px solid rgba(212,170,80,0.22);
+    overflow: hidden;
+    position: relative;
+  }
+  #trust-band::before,
+  #trust-band::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  #trust-band::before {
+    left: 0;
+    background: linear-gradient(to right, var(--navy-mid), transparent);
+  }
+  #trust-band::after {
+    right: 0;
+    background: linear-gradient(to left, var(--navy-mid), transparent);
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 50s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
   .trust-item {
     display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.8rem;
-    color: rgba(250,250,248,0.65);
+    font-size: 0.79rem;
+    color: rgba(250,250,248,0.75);
     letter-spacing: 0.04em;
+    padding: 0.95rem 2.2rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .trust-dot {
     width: 5px; height: 5px; border-radius: 50%;
     background: var(--gold);
     flex-shrink: 0;
   }
+  .trust-item-gold { color: var(--gold-glow); }
+  .trust-sep {
+    color: rgba(201,168,76,0.3);
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
+    align-self: center;
+  }
 
   /* ─── SERVICES ─── */
-  #services { background: var(--off-white); }
+  #services {
+    background: linear-gradient(170deg, #F8F5EE 0%, #F2EEE4 100%);
+  }
 
   .services-grid {
     display: grid;
@@ -299,13 +376,17 @@
   .service-card {
     background: var(--white);
     padding: 2.2rem 2rem;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: background 0.25s, box-shadow 0.3s, transform 0.2s;
     position: relative;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border);
   }
-  .service-card:hover { background: #FFFDF9; box-shadow: 0 4px 20px rgba(13,31,60,0.08); }
+  .service-card:hover {
+    background: #FFFEF9;
+    box-shadow: 0 8px 32px rgba(13,31,60,0.1), 0 0 0 1px rgba(212,170,80,0.18);
+    transform: translateY(-2px);
+  }
   .service-card::before {
     content: '';
     position: absolute;
@@ -328,7 +409,7 @@
     font-family: var(--font-serif);
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--navy);
+    color: #0e1c38;
     margin-bottom: 0.75rem;
     line-height: 1.3;
   }
@@ -354,7 +435,20 @@
   .service-link:hover { border-color: var(--slate); }
 
   /* ─── WHY ─── */
-  #why { background: var(--navy); }
+  #why {
+    background: linear-gradient(160deg, #0e1e3c 0%, #0A1628 60%, #0c1a30 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #why::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: 10%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,170,80,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
   #why .section-title { color: var(--white); }
   #why .section-intro { color: rgba(250,250,248,0.62); }
 
@@ -366,9 +460,15 @@
 
   .why-card {
     padding: 1.8rem;
-    border: 1px solid rgba(250,250,248,0.1);
-    border-radius: 8px;
-    background: rgba(250,250,248,0.04);
+    border: 1px solid rgba(250,250,248,0.09);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+  }
+  .why-card:hover {
+    border-color: rgba(212,170,80,0.3);
+    background: rgba(212,170,80,0.04);
+    box-shadow: 0 0 28px rgba(212,170,80,0.06);
   }
 
   .why-icon {
@@ -477,11 +577,13 @@
   }
 
   .process-figure {
-    background: var(--navy);
-    border-radius: 12px;
+    background: linear-gradient(145deg, #0e2040 0%, #0A1628 100%);
+    border-radius: 16px;
     padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(212,170,80,0.18);
+    box-shadow: 0 0 60px rgba(212,170,80,0.06), 0 20px 60px rgba(0,0,0,0.3);
   }
   .process-figure::before {
     content: '';
@@ -508,7 +610,7 @@
   }
 
   /* ─── INSIGHTS ─── */
-  #insights { background: var(--off-white); }
+  #insights { background: linear-gradient(165deg, #F5F1EA 0%, #EDE9DF 100%); }
 
   .insights-grid {
     display: grid;
@@ -524,7 +626,7 @@
     transition: box-shadow 0.25s, transform 0.2s;
     cursor: pointer;
   }
-  .article-card:hover { box-shadow: 0 6px 28px rgba(13,31,60,0.1); transform: translateY(-2px); }
+  .article-card:hover { box-shadow: 0 8px 36px rgba(13,31,60,0.13), 0 0 0 1px rgba(212,170,80,0.14); transform: translateY(-3px); }
 
   .article-category {
     display: inline-block;
@@ -580,7 +682,7 @@
   .read-more svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 
   /* ─── ABOUT ─── */
-  #about { background: var(--white); }
+  #about { background: linear-gradient(180deg, #FDFCF8 0%, #F8F5EF 100%); }
 
   .about-grid {
     display: grid;
@@ -637,9 +739,24 @@
   }
 
   /* ─── CONTACT ─── */
-  #contact { background: var(--navy); }
+  #contact {
+    background: linear-gradient(150deg, #0e1e3c 0%, #0A1628 70%, #0c1a30 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 48px;
+    padding-bottom: 52px;
+  }
+  #contact::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,170,80,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
   #contact .section-title { color: var(--white); }
-  #contact .section-intro { color: rgba(250,250,248,0.62); max-width: 100%; }
+  #contact .section-intro { color: rgba(250,250,248,0.62); max-width: 100%; margin-bottom: 1.8rem; }
 
   .contact-grid {
     display: grid;
@@ -647,6 +764,8 @@
     gap: 4rem;
     align-items: start;
   }
+
+  .contact-info-block { }
 
   .contact-detail {
     margin-bottom: 1.6rem;
@@ -679,6 +798,7 @@
   }
 
   /* Form */
+  .contact-form { }
 
   .form-row {
     display: grid;
@@ -774,7 +894,7 @@
   .social-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
   /* ─── FAQ SECTION ─── */
-  #faq { background: var(--white); }
+  #faq { background: linear-gradient(180deg, #FDFCF8 0%, #F6F2EA 100%); }
 
   .faq-grid {
     display: flex;
@@ -838,7 +958,7 @@
     border: 1px solid rgba(201,168,76,0.25);
     border-left: 4px solid var(--gold);
     padding: 2rem 2.2rem;
-    margin-top: 4.0rem;
+    margin-top: 1.5rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -858,6 +978,115 @@
     color: rgba(250,250,248,0.65);
     line-height: 1.6;
     margin: 0;
+  }
+
+  /* ─── REVIEWS SECTION ─── */
+  #reviews {
+    background: linear-gradient(165deg, #0c1c36 0%, #0A1628 55%, #0d1e38 100%);
+    padding: 60px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  #reviews .section-label { padding-left: 6%; color: var(--gold); }
+  #reviews .section-title { padding-left: 6%; color: var(--white); }
+  #reviews .divider { margin-left: 6%; }
+
+  #reviews::before, #reviews::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  #reviews::before { left: 0; background: linear-gradient(to right, var(--navy), transparent); }
+  #reviews::after { right: 0; background: linear-gradient(to left, var(--navy), transparent); }
+
+  .reviews-track {
+    display: flex;
+    width: max-content;
+    animation: reviews-scroll 60s linear infinite;
+    padding-bottom: 0.5rem;
+  }
+  .reviews-track:hover { animation-play-state: paused; }
+  @keyframes reviews-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,170,80,0.22);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    width: 320px;
+    flex-shrink: 0;
+    margin: 0 0.75rem;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .review-card:hover {
+    border-color: rgba(212,170,80,0.42);
+    box-shadow: 0 0 30px rgba(212,170,80,0.07);
+  }
+  .review-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.8rem; left: 1.2rem;
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+  }
+
+  .review-stars {
+    display: flex; gap: 3px;
+    margin-bottom: 0.9rem;
+  }
+  .review-stars svg {
+    width: 13px; height: 13px;
+    fill: var(--gold);
+  }
+
+  .review-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(250,250,248,0.78);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .review-author {
+    display: flex; align-items: center; gap: 0.7rem;
+    border-top: 1px solid rgba(250,250,248,0.08);
+    padding-top: 0.9rem;
+  }
+  .review-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--navy-light);
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .review-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(250,250,248,0.85);
+    letter-spacing: 0.02em;
+  }
+  .review-role {
+    font-size: 0.72rem;
+    color: rgba(250,250,248,0.4);
+    margin-top: 0.1rem;
+    letter-spacing: 0.02em;
   }
 
   /* ─── FOOTER ─── */
@@ -913,6 +1142,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 0;
   }
 
   .copyright {
@@ -1115,8 +1345,7 @@
           Search could be automated — judgment isn't.
         </div>
         <div class="hero-actions">
-          <a class="btn-primary" onclick="scrollToSection('services')">View Services</a>
-          <a class="btn-outline" onclick="scrollToSection('contact')">Request a Quote</a>
+          <a class="btn-primary" onclick="scrollToSection('services')">Start Your Project</a>
         </div>
         <div class="hero-stats">
           <div class="stat-item">
@@ -1124,16 +1353,12 @@
             <span class="stat-label">Core Service Areas</span>
           </div>
           <div class="stat-item">
-            <span class="stat-num">USPTO</span>
-            <span class="stat-label">EPO · WIPO · JPO</span>
-          </div>
-          <div class="stat-item">
             <span class="stat-num">Global</span>
             <span class="stat-label">Jurisdiction Coverage</span>
           </div>
           <div class="stat-item">
-            <span class="stat-num">Custom</span>
-            <span class="stat-label">Pricing per Engagement</span>
+            <span class="stat-num">Fast Turnaround</span>
+            <span class="stat-label">Speed with Precision</span>
           </div>
         </div>
       </div>
@@ -1261,13 +1486,76 @@
     </div>
   </section>
 
-  <!-- TRUST BAND -->
+  <!-- TRUST BAND / IP FACTS TICKER -->
   <div id="trust-band">
-    <div class="trust-item"><div class="trust-dot"></div>Human-reviewed deliverables</div>
-    <div class="trust-item"><div class="trust-dot"></div>Attorney-quality documentation</div>
-    <div class="trust-item"><div class="trust-dot"></div>Cited, sourced, defensible</div>
-    <div class="trust-item"><div class="trust-dot"></div>Confidential &amp; NDA-ready</div>
-    <div class="trust-item"><div class="trust-dot"></div>Custom quote per engagement</div>
+    <div class="ticker-track" id="ticker-track">
+      <!-- Set A -->
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Over 3.5 million patents filed globally in 2023</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>USPTO receives ~650,000 patent applications per year</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>EPO grants ~90,000 patents annually across 44 contracting states</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>5G SEP landscape: 95,000+ declared standard-essential patents</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>NPE litigation accounts for ~60% of all US patent suits in the US</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>Invalid prior art citations are the #1 reason IPR petitions succeed</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>China filed more patents than the US and Europe combined in 2022</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>A granted patent confers a 20-year right to exclude from the filing date</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Over 80% of all technical knowledge is disclosed only in patents</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>The average US patent litigation cost exceeds $3M per side through trial</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>PCT system covers 157 countries via a single international application</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>PTAB invalidates ~60–70% of challenged claims in IPR proceedings</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Pharma patents can be extended up to 5 years via patent term extension</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>AI/ML patent filings have grown over 600% in the last decade</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>A prior art reference published anywhere in the world can invalidate a US patent</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>Claim scope — not the number of patents — determines portfolio strength</div>
+      <span class="trust-sep">·</span>
+      <!-- Set B (duplicate for seamless loop) -->
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Over 3.5 million patents filed globally in 2023</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>USPTO receives ~650,000 patent applications per year</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>EPO grants ~90,000 patents annually across 44 contracting states</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>5G SEP landscape: 95,000+ declared standard-essential patents</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>NPE litigation accounts for ~60% of all US patent suits in the US</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>Invalid prior art citations are the #1 reason IPR petitions succeed</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>China filed more patents than the US and Europe combined in 2022</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>A granted patent confers a 20-year right to exclude from the filing date</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Over 80% of all technical knowledge is disclosed only in patents</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>The average US patent litigation cost exceeds $3M per side through trial</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>PCT system covers 157 countries via a single international application</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>PTAB invalidates ~60–70% of challenged claims in IPR proceedings</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>Pharma patents can be extended up to 5 years via patent term extension</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>AI/ML patent filings have grown over 600% in the last decade</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item trust-item-gold"><div class="trust-dot"></div>A prior art reference published anywhere in the world can invalidate a US patent</div>
+      <span class="trust-sep">·</span>
+      <div class="trust-item"><div class="trust-dot"></div>Claim scope — not the number of patents — determines portfolio strength</div>
+      <span class="trust-sep">·</span>
+    </div>
   </div>
 
   <!-- SERVICES -->
@@ -1433,84 +1721,125 @@
         </div>
       </div>
 
-      <!-- Illustration -->
-      <div class="process-figure">
-        <svg viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;position:relative;z-index:1;">
-          <!-- Background grid lines -->
-          <line x1="0" y1="120" x2="420" y2="120" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
-          <line x1="0" y1="240" x2="420" y2="240" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
-          <line x1="0" y1="360" x2="420" y2="360" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
-          <line x1="140" y1="0" x2="140" y2="480" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
-          <line x1="280" y1="0" x2="280" y2="480" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+      <!-- Illustration: Dual-track pipeline -->
+      <div class="process-figure" style="padding:2rem 1.8rem;">
+        <svg viewBox="0 0 400 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;position:relative;z-index:1;">
+          <defs>
+            <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <polygon points="0 1, 7 4, 0 7" fill="rgba(201,168,76,0.7)"/>
+            </marker>
+            <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <polygon points="0 1, 7 4, 0 7" fill="rgba(74,111,165,0.7)"/>
+            </marker>
+            <marker id="arr-white" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <polygon points="0 1, 7 4, 0 7" fill="rgba(250,250,248,0.4)"/>
+            </marker>
+          </defs>
 
-          <!-- Central vertical spine -->
-          <line x1="210" y1="48" x2="210" y2="432" stroke="rgba(201,168,76,0.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- ══ STAGE LABEL ══ -->
+          <text x="200" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="rgba(201,168,76,0.5)" letter-spacing="3">ANALYTICS PIPELINE</text>
 
-          <!-- ── STEP 01 node ── -->
-          <circle cx="210" cy="60" r="22" fill="#162d54" stroke="#C9A84C" stroke-width="1.5"/>
-          <text x="210" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C9A84C" font-weight="700">01</text>
+          <!-- ══════════════════════════════════════
+               ROW 1 — INPUTS  (full width, top)
+               y=30 → h=82 → bottom=112
+          ══════════════════════════════════════ -->
+          <rect x="30" y="30" width="340" height="82" rx="6" fill="rgba(250,250,248,0.04)" stroke="rgba(250,250,248,0.18)" stroke-width="1"/>
+          <!-- top accent line -->
+          <line x1="30" y1="30" x2="370" y2="30" stroke="rgba(250,250,248,0.25)" stroke-width="2"/>
+          <!-- label -->
+          <text x="200" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="rgba(250,250,248,0.38)" letter-spacing="2">INPUTS</text>
+          <!-- 4 chips in a 2×2 grid -->
+          <!-- row 1 -->
+          <rect x="44"  y="56" width="136" height="16" rx="3" fill="rgba(250,250,248,0.07)" stroke="rgba(250,250,248,0.13)" stroke-width="0.8"/>
+          <text x="112" y="67.5" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Patent claims &amp; prosecution history</text>
+          <rect x="220" y="56" width="136" height="16" rx="3" fill="rgba(250,250,248,0.07)" stroke="rgba(250,250,248,0.13)" stroke-width="0.8"/>
+          <text x="288" y="67.5" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Accused product / device specs</text>
+          <!-- row 2 -->
+          <rect x="44"  y="78" width="136" height="16" rx="3" fill="rgba(250,250,248,0.07)" stroke="rgba(250,250,248,0.13)" stroke-width="0.8"/>
+          <text x="112" y="89.5" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Technology domain &amp; scope</text>
+          <rect x="220" y="78" width="136" height="16" rx="3" fill="rgba(250,250,248,0.07)" stroke="rgba(250,250,248,0.13)" stroke-width="0.8"/>
+          <text x="288" y="89.5" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Jurisdiction &amp; date constraints</text>
 
-          <!-- Step 01 card -->
-          <rect x="30" y="90" width="160" height="80" rx="3" fill="rgba(250,250,248,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-          <line x1="30" y1="90" x2="30" y2="170" stroke="#C9A84C" stroke-width="2.5"/>
-          <text x="46" y="112" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.7)" letter-spacing="1">INTAKE</text>
-          <text x="46" y="128" font-family="Georgia,serif" font-size="10" fill="rgba(250,250,248,0.9)" font-weight="700">Scope &amp; Quote</text>
-          <text x="46" y="144" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.45)">Technology area</text>
-          <text x="46" y="157" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.45)">Legal question defined</text>
-          <!-- connector line to spine -->
-          <line x1="190" y1="130" x2="210" y2="110" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <!-- arrow down from INPUTS to SEARCH ENGINE -->
+          <line x1="200" y1="113" x2="200" y2="138" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" marker-end="url(#arr-gold)"/>
 
-          <!-- ── STEP 02 node ── -->
-          <circle cx="210" cy="180" r="22" fill="#162d54" stroke="#C9A84C" stroke-width="1.5"/>
-          <text x="210" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C9A84C" font-weight="700">02</text>
+          <!-- ══════════════════════════════════════
+               ROW 2 — SEARCH ENGINE
+               y=140 → h=70 → bottom=210
+          ══════════════════════════════════════ -->
+          <rect x="80" y="140" width="240" height="70" rx="6" fill="rgba(22,45,84,0.85)" stroke="rgba(201,168,76,0.45)" stroke-width="1.2"/>
+          <line x1="80" y1="140" x2="320" y2="140" stroke="#C9A84C" stroke-width="2.5"/>
+          <text x="200" y="159" text-anchor="middle" font-family="Georgia,serif" font-size="8.5" fill="rgba(201,168,76,0.75)" letter-spacing="1.5">SEARCH ENGINE</text>
+          <!-- two sub-labels side by side -->
+          <text x="140" y="178" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.55)">Semantic + keyword</text>
+          <text x="260" y="178" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.55)">CPC / IPC classification</text>
+          <text x="200" y="198" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.4)">USPTO · EPO · WIPO · JPO · CNIPA · Lens.org</text>
 
-          <!-- Step 02 card — right side -->
-          <rect x="230" y="205" width="160" height="92" rx="3" fill="rgba(250,250,248,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-          <line x1="230" y1="205" x2="230" y2="297" stroke="#C9A84C" stroke-width="2.5"/>
-          <text x="246" y="226" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.7)" letter-spacing="1">SEARCH</text>
-          <text x="246" y="242" font-family="Georgia,serif" font-size="10" fill="rgba(250,250,248,0.9)" font-weight="700">Multi-axis Retrieval</text>
-          <!-- Mini database icons -->
-          <rect x="246" y="252" width="36" height="14" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
-          <text x="264" y="262" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(201,168,76,0.8)">USPTO</text>
-          <rect x="288" y="252" width="28" height="14" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
-          <text x="302" y="262" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(201,168,76,0.8)">EPO</text>
-          <rect x="246" y="271" width="34" height="14" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
-          <text x="263" y="281" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(201,168,76,0.8)">WIPO</text>
-          <rect x="286" y="271" width="28" height="14" rx="2" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.2)" stroke-width="0.8"/>
-          <text x="300" y="281" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(201,168,76,0.6)">NPL</text>
-          <!-- connector line to spine -->
-          <line x1="230" y1="250" x2="210" y2="230" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <!-- arrow down from SEARCH ENGINE to CORPUS -->
+          <line x1="200" y1="211" x2="200" y2="238" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" marker-end="url(#arr-gold)"/>
 
-          <!-- ── STEP 03 node ── -->
-          <circle cx="210" cy="310" r="22" fill="#162d54" stroke="#C9A84C" stroke-width="1.5"/>
-          <text x="210" y="315" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C9A84C" font-weight="700">03</text>
+          <!-- ══════════════════════════════════════
+               ROW 3 — CORPUS  (full width)
+               y=240 → h=80 → bottom=320
+          ══════════════════════════════════════ -->
+          <rect x="30" y="240" width="340" height="80" rx="6" fill="rgba(250,250,248,0.04)" stroke="rgba(250,250,248,0.18)" stroke-width="1"/>
+          <line x1="30" y1="240" x2="370" y2="240" stroke="rgba(250,250,248,0.2)" stroke-width="2"/>
+          <text x="200" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="rgba(250,250,248,0.38)" letter-spacing="2">CORPUS</text>
+          <!-- 4 source chips -->
+          <rect x="44"  y="266" width="72" height="15" rx="3" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+          <text x="80" y="277" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.8)">Patents</text>
+          <rect x="128" y="266" width="96" height="15" rx="3" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+          <text x="176" y="277" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.8)">IEEE · NPL · Academic</text>
+          <rect x="236" y="266" width="96" height="15" rx="3" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+          <text x="284" y="277" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.8)">3GPP · ETSI · IETF</text>
+          <!-- second row chip -->
+          <rect x="116" y="288" width="168" height="15" rx="3" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.2)" stroke-width="0.8"/>
+          <text x="200" y="299" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.6)">Product docs · Datasheets · FCC · Web</text>
 
-          <!-- Step 03 card — left side -->
-          <rect x="30" y="335" width="160" height="90" rx="3" fill="rgba(250,250,248,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-          <line x1="30" y1="335" x2="30" y2="425" stroke="#C9A84C" stroke-width="2.5"/>
-          <text x="46" y="356" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.7)" letter-spacing="1">ANALYSIS</text>
-          <text x="46" y="372" font-family="Georgia,serif" font-size="10" fill="rgba(250,250,248,0.9)" font-weight="700">Element Mapping</text>
-          <!-- mini claim chart rows -->
-          <rect x="46" y="380" width="130" height="8" rx="1" fill="rgba(250,250,248,0.08)"/>
-          <rect x="46" y="380" width="90" height="8" rx="1" fill="rgba(201,168,76,0.2)"/>
-          <rect x="46" y="393" width="130" height="8" rx="1" fill="rgba(250,250,248,0.08)"/>
-          <rect x="46" y="393" width="60" height="8" rx="1" fill="rgba(201,168,76,0.15)"/>
-          <rect x="46" y="406" width="130" height="8" rx="1" fill="rgba(250,250,248,0.08)"/>
-          <rect x="46" y="406" width="110" height="8" rx="1" fill="rgba(201,168,76,0.25)"/>
-          <!-- connector -->
-          <line x1="190" y1="380" x2="210" y2="355" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <!-- two arrows splitting down to dual tracks -->
+          <path d="M120 321 L120 348" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="none" marker-end="url(#arr-gold)"/>
+          <path d="M280 321 L280 348" stroke="rgba(74,111,165,0.5)" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"/>
+          <!-- horizontal split line -->
+          <line x1="120" y1="321" x2="280" y2="321" stroke="rgba(250,250,248,0.1)" stroke-width="1"/>
 
-          <!-- ── STEP 04 node ── -->
-          <circle cx="210" cy="432" r="22" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5"/>
-          <text x="210" y="437" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#0D1F3C" font-weight="700">04</text>
+          <!-- ══════════════════════════════════════
+               ROW 4 — DUAL TRACKS
+               y=350 → h=100 → bottom=450
+          ══════════════════════════════════════ -->
 
-          <!-- Deliverable badge -->
-          <rect x="240" y="418" width="150" height="32" rx="3" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
-          <text x="315" y="438" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(201,168,76,0.9)" font-weight="700">Structured Report</text>
-          <line x1="232" y1="434" x2="240" y2="434" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+          <!-- Track A: PRIOR ART / VALIDITY -->
+          <rect x="20" y="350" width="165" height="100" rx="6" fill="rgba(22,45,84,0.75)" stroke="rgba(201,168,76,0.45)" stroke-width="1.2"/>
+          <line x1="20" y1="350" x2="185" y2="350" stroke="#C9A84C" stroke-width="2.5"/>
+          <text x="102" y="369" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="rgba(201,168,76,0.75)" letter-spacing="1">PRIOR ART · VALIDITY</text>
+          <line x1="32" y1="378" x2="173" y2="378" stroke="rgba(250,250,248,0.08)" stroke-width="0.8"/>
+          <text x="102" y="394" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Anticipation · Obviousness</text>
+          <text x="102" y="411" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">§102 / §103 · EPO Art. 54/56</text>
+          <text x="102" y="428" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.5)">IPR · PGR · Prosecution support</text>
+          <text x="102" y="443" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(250,250,248,0.3)">Publication dates · Enablement</text>
 
-          <!-- Top label -->
-          <text x="210" y="24" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(201,168,76,0.5)" letter-spacing="2">WORKFLOW</text>
+          <!-- Track B: INFRINGEMENT -->
+          <rect x="215" y="350" width="165" height="100" rx="6" fill="rgba(14,26,50,0.8)" stroke="rgba(74,111,165,0.5)" stroke-width="1.2"/>
+          <line x1="215" y1="350" x2="380" y2="350" stroke="#4A6FA5" stroke-width="2.5"/>
+          <text x="298" y="369" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="rgba(107,143,196,0.85)" letter-spacing="1">INFRINGEMENT · FTO</text>
+          <line x1="227" y1="378" x2="368" y2="378" stroke="rgba(250,250,248,0.08)" stroke-width="0.8"/>
+          <text x="298" y="394" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Claim reads · Element mapping</text>
+          <text x="298" y="411" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.6)">Standards mapping · SEP analysis</text>
+          <text x="298" y="428" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(107,143,196,0.55)">Litigation · Licensing · FTO</text>
+          <text x="298" y="443" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(250,250,248,0.3)">Teardowns · Datasheets · Specs</text>
+
+          <!-- arrows converging back to analyst -->
+          <path d="M102 451 L102 468 L200 468 L200 486" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" fill="none" marker-end="url(#arr-gold)"/>
+          <path d="M298 451 L298 468 L200 468" stroke="rgba(74,111,165,0.45)" stroke-width="1.5" fill="none"/>
+
+          <!-- ══════════════════════════════════════
+               ROW 5 — ANALYST REVIEW
+               y=488 → h=58 → bottom=546
+          ══════════════════════════════════════ -->
+          <rect x="70" y="488" width="260" height="58" rx="6" fill="rgba(22,45,84,0.9)" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
+          <line x1="70" y1="488" x2="330" y2="488" stroke="#C9A84C" stroke-width="2.5"/>
+          <text x="200" y="506" text-anchor="middle" font-family="Georgia,serif" font-size="8.5" fill="rgba(201,168,76,0.8)" letter-spacing="1.5">ANALYST REVIEW</text>
+          <text x="200" y="524" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(250,250,248,0.55)">Element-by-element verification · Domain expertise</text>
+          <text x="200" y="540" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(201,168,76,0.4)">Human judgment — no AI say-so</text>
         </svg>
       </div>
     </div>
@@ -1651,6 +1980,198 @@
     </div>
   </section>
 
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <span class="section-label">Client Feedback</span>
+    <h2 class="section-title" style="margin-bottom:0.5rem;">What clients say</h2>
+    <div class="divider"></div>
+    <div style="padding:0 0 2rem;" id="reviews-ticker-wrap">
+      <div class="reviews-track" id="reviews-track">
+        <!-- Set A -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">The prior art search report was exactly what we needed for the IPR petition. Every reference was accompanied by a clear claim mapping and a specific disclosure date — no guesswork, no filler. Filing went smoothly.</p>
+          <div class="review-author">
+            <div class="review-avatar">RP</div>
+            <div>
+              <div class="review-name">R. Patel</div>
+              <div class="review-role">Partner, Boutique IP Firm · Chicago</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">We had a 5G standards mapping project with a tight deadline — 72 hours. Aube Research came through with a complete SEP claim chart covering 3GPP Rel-15 specifications. The technical accuracy and speed were both outstanding.</p>
+          <div class="review-author">
+            <div class="review-avatar">MK</div>
+            <div>
+              <div class="review-name">M. Krishnamurthy</div>
+              <div class="review-role">Senior IP Counsel, Telecom OEM · San Jose</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">I retained Aube Research for an FTO analysis before a product launch in the US and EU. The final opinion was clearly written, jurisdiction-specific, and identified two design-around options I hadn't considered. Well worth it.</p>
+          <div class="review-author">
+            <div class="review-avatar">SL</div>
+            <div>
+              <div class="review-name">S. Laurent</div>
+              <div class="review-role">Founder, Medical Device Startup · Amsterdam</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">We needed a patent landscape across the IoT sensor space for an M&amp;A target assessment. The deliverable mapped 800+ families with clear white-space analysis and competitor clusters. Exactly the structured intelligence we needed for the decision.</p>
+          <div class="review-author">
+            <div class="review-avatar">CT</div>
+            <div>
+              <div class="review-name">C. Thompson</div>
+              <div class="review-role">VP Strategy, PE-backed Tech Co. · New York</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">As a solo inventor, I was concerned the search would be too shallow. It wasn't. The report identified three highly relevant references I had completely missed, with specific page and line citations. Helped me substantially narrow my claims before filing.</p>
+          <div class="review-author">
+            <div class="review-avatar">JA</div>
+            <div>
+              <div class="review-name">J. Alvarez</div>
+              <div class="review-role">Independent Inventor · Austin, TX</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">The prior art search report was exactly what we needed for the IPR petition. Every reference was accompanied by a clear claim mapping and a specific disclosure date — no guesswork, no filler. Filing went smoothly.</p>
+          <div class="review-author">
+            <div class="review-avatar">RP</div>
+            <div>
+              <div class="review-name">R. Patel</div>
+              <div class="review-role">Partner, Boutique IP Firm · Chicago</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">We had a 5G standards mapping project with a tight deadline — 72 hours. Aube Research came through with a complete SEP claim chart covering 3GPP Rel-15 specifications. The technical accuracy and speed were both outstanding.</p>
+          <div class="review-author">
+            <div class="review-avatar">MK</div>
+            <div>
+              <div class="review-name">M. Krishnamurthy</div>
+              <div class="review-role">Senior IP Counsel, Telecom OEM · San Jose</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">I retained Aube Research for an FTO analysis before a product launch in the US and EU. The final opinion was clearly written, jurisdiction-specific, and identified two design-around options I hadn't considered. Well worth it.</p>
+          <div class="review-author">
+            <div class="review-avatar">SL</div>
+            <div>
+              <div class="review-name">S. Laurent</div>
+              <div class="review-role">Founder, Medical Device Startup · Amsterdam</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">We needed a patent landscape across the IoT sensor space for an M&amp;A target assessment. The deliverable mapped 800+ families with clear white-space analysis and competitor clusters. Exactly the structured intelligence we needed for the decision.</p>
+          <div class="review-author">
+            <div class="review-avatar">CT</div>
+            <div>
+              <div class="review-name">C. Thompson</div>
+              <div class="review-role">VP Strategy, PE-backed Tech Co. · New York</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-text">As a solo inventor, I was concerned the search would be too shallow. It wasn't. The report identified three highly relevant references I had completely missed, with specific page and line citations. Helped me substantially narrow my claims before filing.</p>
+          <div class="review-author">
+            <div class="review-avatar">JA</div>
+            <div>
+              <div class="review-name">J. Alvarez</div>
+              <div class="review-role">Independent Inventor · Austin, TX</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <span class="section-label">About</span>
@@ -1706,8 +2227,7 @@
         <div class="contact-detail">
           <div class="contact-label">Free Consultation</div>
           <div class="contact-value" style="font-size:0.88rem; font-family:var(--font-sans); color:rgba(250,250,248,0.85);">30-minute complimentary call</div>
-          <div class="contact-sub" style="font-size:0.82rem; margin-top:0.35rem; line-height:1.7;">Not sure what you need? Book a free 30-minute scoping call. No obligation — we will help you define the right scope before any quote is issued.</div>
-          <a href="mailto:hello@auberesearch.com?subject=Free%2030-min%20Consultation%20Request" class="btn-primary" style="display:inline-block; margin-top:0.85rem; font-size:0.75rem; padding:0.55rem 1.2rem;">Book Free Call →</a>
+          <div class="contact-sub" style="font-size:0.82rem; margin-top:0.35rem; line-height:1.7;">Not sure what you need? Mention it in your message and we will schedule a free 30-minute scoping call before any quote is issued.</div>
         </div>
         <div class="contact-detail">
           <div class="contact-label">Follow Us</div>
@@ -1899,9 +2419,6 @@
     <h2>16. Changes to this policy</h2>
     <p>We may update this policy to reflect changes in law, technology, or our practices. Material changes will be reflected in an updated effective date at the top of this page. For significant changes we will take reasonable steps to bring the update to your attention. Continued use of the website following any update constitutes acceptance of the revised policy. We recommend reviewing this page periodically.</p>
 
-    <h2>17. Governing law</h2>
-    <p>This policy is primarily governed by the laws of India, including the Information Technology Act, 2000, the IT (Reasonable Security Practices) Rules, 2011, and the Digital Personal Data Protection Act, 2023. For individuals in the EEA and UK, the GDPR and UK GDPR respectively apply to our processing of their personal data, and we commit to compliance with both frameworks. For individuals in other jurisdictions with applicable data protection laws, we will comply with those laws to the extent they apply to our activities.</p>
-
     <div style="margin-top:2.5rem; padding:1.4rem 1.6rem; background:var(--off-white); border:1px solid var(--border); border-left:3px solid var(--gold);">
       <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.75; margin:0;">
         <strong style="color:var(--navy); display:block; margin-bottom:0.4rem;">Questions about this policy?</strong>
@@ -2019,9 +2536,6 @@
     <h2>18. Entire agreement</h2>
     <p>These Terms, together with the Privacy Policy and any written project scope or engagement letter, constitute the entire agreement between the parties with respect to the subject matter and supersede all prior representations, discussions, and agreements. No oral statement or representation modifies these Terms.</p>
 
-    <h2>19. Governing law and jurisdiction</h2>
-    <p>These Terms are governed by the laws of India. Any dispute not resolved through negotiation or mediation shall be subject to the exclusive jurisdiction of the courts of Chandigarh, India. If you are contracting from a jurisdiction whose mandatory consumer or professional protection laws confer rights that cannot be waived by choice of law, those rights are not affected by this clause.</p>
-
     <div style="margin-top:2.5rem; padding:1.4rem 1.6rem; background:var(--off-white); border:1px solid var(--border); border-left:3px solid var(--gold);">
       <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.75; margin:0;">
         <strong style="color:var(--navy); display:block; margin-bottom:0.4rem;">Questions about these Terms?</strong>
@@ -2067,14 +2581,15 @@
         <li><a href="https://medium.com/@auberesearch" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.7"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>Medium</a></li>
       </ul>
     </div>
+  </div><!-- /footer-inner -->
   <div class="footer-bottom">
     <div class="copyright">
       &copy; <span id="year"></span> Aube Research. All rights reserved.<br>
       Patent analytics services. Not a law firm. Content on this website does not constitute legal advice.
     </div>
     <div class="footer-legal">
-      <a href="#" onclick="showPage('privacy-page')">Privacy Policy</a>
-      <a href="#" onclick="showPage('terms')">Terms &amp; Conditions</a>
+      <a href="#" onclick="event.preventDefault(); showPage('privacy-page')">Privacy Policy</a>
+      <a href="#" onclick="event.preventDefault(); showPage('terms')">Terms &amp; Conditions</a>
     </div>
   </div>
 </footer>
@@ -2522,21 +3037,31 @@ function openService(id) {
 // ─── PAGE ROUTING ───
 let previousPage = 'home';
 
-function showPage(pageId) {
+function showPage(pageId, pushState = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + pageId).classList.add('active');
   window.scrollTo(0,0);
+  if (pushState) {
+    history.pushState({ page: pageId }, '', '#' + pageId);
+  }
 }
 
+window.addEventListener('popstate', function(e) {
+  const pageId = (e.state && e.state.page) ? e.state.page : 'home';
+  showPage(pageId, false);
+  window.scrollTo(0, 0);
+});
+
 function scrollToSection(sectionId) {
+  const wasOnOtherPage = !document.getElementById('page-home').classList.contains('active');
   showPage('home');
   setTimeout(() => {
     const el = document.getElementById(sectionId);
     if (el) {
       const top = el.getBoundingClientRect().top + window.pageYOffset - 70;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+      window.scrollTo({ top: top, behavior: wasOnOtherPage ? 'auto' : 'smooth' });
     }
-  }, 80);
+  }, wasOnOtherPage ? 50 : 80);
 }
 
 function goBackFromArticle() {
@@ -2575,6 +3100,9 @@ function openArticle(id) {
 // ─── INIT ───
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Initialize history state for home page
+  history.replaceState({ page: 'home' }, '', '#home');
 
   // Home preview: 3 articles
   const homeGrid = document.getElementById('home-insights-grid');
@@ -2643,6 +3171,284 @@ async function submitForm() {
     btn.textContent = 'Send Enquiry';
   }
 }
+</script>
+
+<!-- ─── COOKIE BANNER ─── -->
+<style>
+  #cookie-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,10,20,0.45);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  #cookie-overlay.visible { opacity: 1; pointer-events: all; }
+
+  #cookie-banner {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    width: min(680px, calc(100% - 2rem));
+    z-index: 9999;
+    background: #0d1c38;
+    border: 1px solid rgba(212,170,80,0.3);
+    border-radius: 14px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,170,80,0.08);
+    padding: 1.6rem 1.8rem;
+    transition: transform 0.4s cubic-bezier(0.34,1.26,0.64,1), opacity 0.3s;
+    opacity: 0;
+  }
+  #cookie-banner.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .ck-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .ck-icon {
+    width: 28px; height: 28px;
+    background: rgba(212,170,80,0.12);
+    border: 1px solid rgba(212,170,80,0.3);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ck-icon svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+  .ck-title {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .ck-body {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: rgba(250,250,248,0.6);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .ck-body a {
+    color: var(--gold-light);
+    text-decoration: underline;
+    cursor: pointer;
+    text-underline-offset: 2px;
+  }
+
+  .ck-types {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.3rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+  }
+  .ck-type-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .ck-type-info {}
+  .ck-type-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(250,250,248,0.85);
+    margin-bottom: 0.15rem;
+  }
+  .ck-type-desc {
+    font-size: 0.72rem;
+    color: rgba(250,250,248,0.38);
+    line-height: 1.5;
+  }
+
+  /* Toggle switch */
+  .ck-toggle {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ck-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .ck-toggle-track {
+    display: block;
+    width: 36px; height: 20px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .ck-toggle input:checked + .ck-toggle-track { background: var(--gold); }
+  .ck-toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 14px; height: 14px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .ck-toggle input:checked + .ck-toggle-track::after { transform: translateX(16px); }
+  .ck-toggle-disabled .ck-toggle-track { cursor: not-allowed; opacity: 0.5; }
+  .ck-required-badge {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(250,250,248,0.3);
+    border: 1px solid rgba(250,250,248,0.15);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  .ck-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .ck-btn-accept {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 0.55rem 1.3rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex: 1;
+  }
+  .ck-btn-accept:hover { background: var(--gold-light); }
+  .ck-btn-save {
+    background: transparent;
+    color: rgba(250,250,248,0.75);
+    border: 1px solid rgba(250,250,248,0.2);
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    flex: 1;
+  }
+  .ck-btn-save:hover { border-color: rgba(250,250,248,0.4); color: var(--white); }
+  .ck-btn-reject {
+    background: transparent;
+    color: rgba(250,250,248,0.38);
+    border: 1px solid rgba(250,250,248,0.1);
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    flex: 1;
+  }
+  .ck-btn-reject:hover { color: rgba(250,250,248,0.6); border-color: rgba(250,250,248,0.22); }
+
+  @media (max-width: 480px) {
+    #cookie-banner { padding: 1.2rem; bottom: 0.75rem; }
+    .ck-actions { flex-direction: column; }
+  }
+</style>
+
+<div id="cookie-overlay"></div>
+<div id="cookie-banner" role="dialog" aria-modal="true" aria-label="Cookie preferences">
+  <div class="ck-head">
+    <div class="ck-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+    </div>
+    <span class="ck-title">We use cookies</span>
+  </div>
+  <p class="ck-body">
+    This website uses cookies to ensure basic functionality and to understand how visitors interact with the site. You can choose which categories to allow. See our <a onclick="event.preventDefault(); closeCookieBanner(); setTimeout(()=>showPage('privacy-page'),100)">Privacy Policy</a> for details.
+  </p>
+
+  <div class="ck-types">
+    <div class="ck-type-row">
+      <div class="ck-type-info">
+        <div class="ck-type-label">Essential cookies</div>
+        <div class="ck-type-desc">Required for the site to function. Cannot be disabled.</div>
+      </div>
+      <span class="ck-required-badge">Always on</span>
+    </div>
+    <div class="ck-type-row">
+      <div class="ck-type-info">
+        <div class="ck-type-label">Analytics cookies</div>
+        <div class="ck-type-desc">Help us understand how visitors use the site — page visits, referrers, session duration. No personal data is stored.</div>
+      </div>
+      <label class="ck-toggle">
+        <input type="checkbox" id="ck-analytics" checked>
+        <span class="ck-toggle-track"></span>
+      </label>
+    </div>
+    <div class="ck-type-row">
+      <div class="ck-type-info">
+        <div class="ck-type-label">Preference cookies</div>
+        <div class="ck-type-desc">Remember your settings and choices across visits.</div>
+      </div>
+      <label class="ck-toggle">
+        <input type="checkbox" id="ck-prefs" checked>
+        <span class="ck-toggle-track"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="ck-actions">
+    <button class="ck-btn-accept" onclick="cookieAcceptAll()">Accept all</button>
+    <button class="ck-btn-save" onclick="cookieSavePrefs()">Save preferences</button>
+    <button class="ck-btn-reject" onclick="cookieRejectAll()">Reject all</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (!localStorage.getItem('cookie_consent')) {
+      setTimeout(function() {
+        document.getElementById('cookie-overlay').classList.add('visible');
+        document.getElementById('cookie-banner').classList.add('visible');
+      }, 900);
+    }
+  })();
+
+  function closeCookieBanner() {
+    document.getElementById('cookie-overlay').classList.remove('visible');
+    var b = document.getElementById('cookie-banner');
+    b.classList.remove('visible');
+    setTimeout(function() {
+      b.style.display = 'none';
+      document.getElementById('cookie-overlay').style.display = 'none';
+    }, 420);
+  }
+
+  function cookieAcceptAll() {
+    try { localStorage.setItem('cookie_consent', JSON.stringify({ essential: true, analytics: true, prefs: true, ts: Date.now() })); } catch(e) {}
+    closeCookieBanner();
+  }
+
+  function cookieSavePrefs() {
+    var analytics = document.getElementById('ck-analytics').checked;
+    var prefs = document.getElementById('ck-prefs').checked;
+    try { localStorage.setItem('cookie_consent', JSON.stringify({ essential: true, analytics: analytics, prefs: prefs, ts: Date.now() })); } catch(e) {}
+    closeCookieBanner();
+  }
+
+  function cookieRejectAll() {
+    try { localStorage.setItem('cookie_consent', JSON.stringify({ essential: true, analytics: false, prefs: false, ts: Date.now() })); } catch(e) {}
+    closeCookieBanner();
+  }
 </script>
 </body>
 </html>
